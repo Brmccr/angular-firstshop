@@ -1,0 +1,53 @@
+<h2>Products</h2>
+
+ <!-- utilizing products.ts to get information from  -->
+  <!-- ngFor each of products -  -->
+<div *ngFor="let product of products; index as productId">
+
+<!-- utilizing index as productId - needed to get product details to display properly -->
+
+
+
+
+<!-- defining a link using routerLink directive - (products/productID) -->
+<!-- this gives the router control over the a tag (anchor element) -->
+<!-- this is linking the title (the click) to product details and that html through
+a route -->
+
+   <h3>
+    <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
+      {{ product.name }}
+    </a>
+  </h3>
+
+    <!-- ngIf - If products have a description it will run  -->
+
+    <p *ngIf="product.description">
+    Description: {{ product.description }}
+  </p>
+  
+  <!-- grabbing share from product-list.components.ts -->
+  <!-- event binding -->
+  <button (click)="share()"> 
+    Share
+  </button>
+
+  <!-- taking alert from product-alerts component - utilizing it to display 
+  the notify me button  -->
+
+  <!-- grabbing from app - product alerts -->
+  <app-product-alerts
+  [product]="product"
+  (notify)="onNotify()"> 
+  <!-- fully linking the functionality with onNotify- 
+  allows alert to be displayed  -->
+</app-product-alerts>
+
+</div>
+
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
